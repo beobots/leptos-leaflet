@@ -1,4 +1,3 @@
-use crate::{FillRule, LineCap, LineJoin};
 use leaflet::LatLng;
 
 #[derive(Debug, Default, Clone, Copy, PartialEq)]

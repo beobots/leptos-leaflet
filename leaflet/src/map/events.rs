@@ -1,6 +1,6 @@
-use crate::{Event, LatLng, LayerEvents, LocationEvent, Point, Popup, PopupEvents, Tooltip, TooltipEvents};
-use wasm_bindgen::prelude::*;
 use crate::evented::LeafletEventHandler;
+use crate::{Event, LatLng, LocationEvent, Point, Popup, PopupEvents, Tooltip, TooltipEvents};
+use wasm_bindgen::prelude::*;
 
 use super::Map;
 
@@ -199,11 +199,11 @@ impl Map {
     }
 }
 
-impl LeafletEventHandler for Map{
+impl LeafletEventHandler for Map {
     fn on(&self, event: &str, callback: &JsValue) {
         self.obj.on(event, callback);
     }
 }
 
-impl TooltipEvents for Map{}
-impl PopupEvents for Map{}
+impl TooltipEvents for Map {}
+impl PopupEvents for Map {}

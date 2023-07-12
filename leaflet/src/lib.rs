@@ -16,7 +16,7 @@ mod raster;
 mod shapes;
 mod tooltip;
 
-use js_sys::{Array, Object};
+use js_sys::Array;
 use wasm_bindgen::prelude::*;
 
 pub use control::Control;

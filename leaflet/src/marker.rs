@@ -1,10 +1,9 @@
 use crate::evented::{
     DragEvents, LeafletEventHandler, MouseEvents, MoveEvents, PopupEvents, TooltipEvents,
 };
-use crate::map::{DragEndEvent, TooltipEvent};
 use crate::{
-    object_constructor, object_property_set, Event, Evented, Handler, Icon, LatLng, Layer,
-    LayerEvents, MouseEvent, Point, PopupEvent,
+    object_constructor, object_property_set, Evented, Handler, Icon, LatLng, Layer, LayerEvents,
+    Point,
 };
 use js_sys::Object;
 use wasm_bindgen::prelude::*;

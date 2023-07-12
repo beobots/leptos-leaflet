@@ -1,5 +1,5 @@
 use crate::leaflet_event;
-use leaflet::{ErrorEvent, Event, LocationEvent, Map, PopupEvent};
+use leaflet::{ErrorEvent, Event, LocationEvent, Map};
 use std::cell::RefCell;
 use std::rc::Rc;
 
@@ -22,7 +22,7 @@ impl MapEvents {
     pub fn new() -> Self {
         Self::default()
     }
-    
+
     pub fn setup(&self, map: &Map) {
         if let Some(location_found) = self.inner.borrow_mut().location_found.take() {
             map.on_location_found(location_found);
@@ -45,16 +45,8 @@ impl MapEvents {
     }
 }
 
-leaflet_event!(
-    MapEvents,
-    location_found,
-    LocationEvent
-);
-leaflet_event!(
-    MapEvents,
-    location_error,
-    ErrorEvent
-);
+leaflet_event!(MapEvents, location_found, LocationEvent);
+leaflet_event!(MapEvents, location_error, ErrorEvent);
 leaflet_event!(MapEvents, load, Event);
 leaflet_event!(MapEvents, unload, Event);
 leaflet_event!(MapEvents, resize, Event);

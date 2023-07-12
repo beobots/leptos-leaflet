@@ -21,9 +21,9 @@ pub fn Tooltip(
     // let content = view! {cx, <div>{children(cx)}</div>};
     create_effect(cx, move |_| {
         let mut options = leaflet::TooltipOptions::default();
-        options.permanent(permanent());
-        options.direction(&direction());
-        options.sticky(sticky());
+        options.permanent(permanent.get());
+        options.direction(&direction.get());
+        options.sticky(sticky.get());
 
         if let Some(overlay_context) = overlay_context.clone() {
             if let (Some(layer), Some(_map)) = (
@@ -39,7 +39,7 @@ pub fn Tooltip(
                 });
             }
         } else if let Some(map) = map_context.map() {
-            let tooltip = leaflet::Tooltip::newWithLatLng(&position().into(), &options);
+            let tooltip = leaflet::Tooltip::newWithLatLng(&position.get().into(), &options);
             let content = content.get_untracked().expect("content ref");
             let html_view: &JsValue = content.unchecked_ref();
             tooltip.setContent(html_view);

@@ -1,5 +1,5 @@
 use crate::map::{DragEndEvent, TooltipEvent};
-use crate::{Circle, Event, MouseEvent, PopupEvent};
+use crate::{Event, MouseEvent, PopupEvent};
 use js_sys::Object;
 use wasm_bindgen::prelude::*;
 

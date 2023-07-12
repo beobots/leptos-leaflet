@@ -4,9 +4,13 @@ use crate::components::context::{
 };
 use crate::components::path_options::{FillRule, LineCap, LineJoin};
 use crate::components::position::Position;
+use crate::{
+    effect_update_on_change, effect_update_on_change_ref, setup_layer_option,
+    setup_layer_option_ref, setup_layer_option_str, LayerEvents, MouseEvents, PopupEvents,
+    TooltipEvents,
+};
 use leaflet::CircleOptions;
 use leptos::*;
-use crate::{effect_update_on_change, effect_update_on_change_ref, LayerEvents, MouseEvents, PopupEvents, setup_layer_option, setup_layer_option_ref, setup_layer_option_str, TooltipEvents};
 
 #[component(transparent)]
 pub fn Circle(
@@ -80,14 +84,26 @@ pub fn Circle(
             let overlay_context =
                 use_context::<LeafletOverlayContainerContext>(cx).expect("overlay context");
             if let Some(circle) = overlay_context.container::<leaflet::Circle>() {
-                circle.setRadius(radius());
+                circle.setRadius(radius.get());
             }
         });
 
         effect_update_on_change!(cx, leaflet::Circle, leaflet::CircleOptions, stroke);
         effect_update_on_change!(cx, leaflet::Circle, leaflet::CircleOptions, weight);
-        effect_update_on_change_ref!(cx, leaflet::Circle, leaflet::CircleOptions, color, color_clone);
-        effect_update_on_change_ref!(cx, leaflet::Circle, leaflet::CircleOptions, fill_color, fill_color_clone);
+        effect_update_on_change_ref!(
+            cx,
+            leaflet::Circle,
+            leaflet::CircleOptions,
+            color,
+            color_clone
+        );
+        effect_update_on_change_ref!(
+            cx,
+            leaflet::Circle,
+            leaflet::CircleOptions,
+            fill_color,
+            fill_color_clone
+        );
         effect_update_on_change!(cx, leaflet::Circle, leaflet::CircleOptions, opacity);
         effect_update_on_change!(cx, leaflet::Circle, leaflet::CircleOptions, fill_opacity);
 

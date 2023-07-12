@@ -45,7 +45,7 @@ pub fn MapContainer(
     provide_leaflet_context(cx);
 
     create_effect(cx, move |_| {
-        if let Some(node) = map_ref() {
+        if let Some(node) = map_ref.get() {
             let center = center;
             let html_node = node.unchecked_ref::<HtmlDivElement>();
             // Randomize the id of the map
@@ -60,7 +60,7 @@ pub fn MapContainer(
                 let map_context = expect_context::<LeafletMapContext>(cx);
                 let node = node.unchecked_ref::<HtmlDivElement>();
                 let mut options = leaflet::MapOptions::new();
-                options.zoom(zoom());
+                options.zoom(zoom.get());
                 if let Some(center) = center {
                     options.center(&center.get().into());
                 }
@@ -80,11 +80,11 @@ pub fn MapContainer(
                 popup_events.setup(&leaflet_map);
                 tooltip_events.setup(&leaflet_map);
 
-                if locate() {
+                if locate.get() {
                     let mut locate_options = LocateOptions::new();
-                    locate_options.enable_high_accuracy(enable_high_accuracy());
-                    locate_options.set_view(set_view());
-                    locate_options.watch(watch());
+                    locate_options.enable_high_accuracy(enable_high_accuracy.get());
+                    locate_options.set_view(set_view.get());
+                    locate_options.watch(watch.get());
                     leaflet_map.locateWithOptions(&locate_options);
 
                     // leaflet_map.on("locationfound", );
@@ -107,7 +107,7 @@ pub fn MapContainer(
         };
     });
 
-    view! {cx, <div class=class _ref=map_ref style=style>{children.map(|child|child(cx))}</div>}
+    view! {cx, <div class={ move || class.get() } _ref=map_ref style={ move || style.get() }>{ children.map(|child| child(cx)) }</div>}
 }
 
 #[derive(Debug, Default, Clone)]

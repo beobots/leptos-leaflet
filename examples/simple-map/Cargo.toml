@@ -7,12 +7,8 @@ edition = "2021"
 
 [dependencies]
 console_error_panic_hook = "0.1"
-leptos = { git = "https://github.com/leptos-rs/leptos", default-features = false, "features" = [
-    "csr",
-] }
-leptos-leaflet = { path = "../../leptos-leaflet", default-features = false, features = [
-    "csr",
-] }
+leptos = { version = "0.4", default-features = false, "features" = [ "csr" ] }
+leptos-leaflet = { path = "../../leptos-leaflet", default-features = false, features = [ "csr", ] }
 
 web-sys = { version = "0.3", features=["HtmlBodyElement"] }
 

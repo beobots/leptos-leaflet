@@ -95,7 +95,7 @@ pub fn Popup(
                 });
             }
         } else if let Some(map) = map_context.map() {
-            let popup = leaflet::Popup::newWithLatLng(&position().into(), &options);
+            let popup = leaflet::Popup::newWithLatLng(&position.get().into(), &options);
             let content = inner_content.get_untracked().expect("content ref");
             let html_view: &JsValue = content.unchecked_ref();
             popup.setContent(html_view);
